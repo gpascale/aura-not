@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link href="css/aura-not.css" rel="stylesheet" type="text/css"></link>
+    <!-- external stuff -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/ext/underscore-min.js"></script>
+    <script type="text/javascript" src="js/ext/backbone-min.js"></script>
+    <!-- main js file -->
+    <script type="text/javascript" src="js/aura-not.js"></script>
+  </head>
+  <body>
+
+
+    <!-- Templates -->
+    <script type="text/template" id="appViewTmpl">
+      <header>
+        <h1>aura:not</h1>
+      </header>
+        <div class="row">
+          <div class="sidebarContainer col-sm-4 col-md-4 col-lg-4"></div>
+          <div class="contentContainer col-sm-8 col-md-8 col-lg-8"></div>
+        </div>
+    </script>
+
+    <script type="text/template" id="noteViewTmpl">
+      <div class="header">
+          <div class="col-sm-9 col-md-9 col-lg-9">
+            <input type="text" placeholder="Note Title">
+          </div>
+          <button type="button" class="btn btn-sm">Cancel</button>
+          <button type="button" class="btn btn-sm">Save</button>
+        </div>
+        <button type="button" class="btn btn-lg">
+            <i src="img/location.png"></i>
+            Add Location
+        </button>
+
+        <div class="noteInputWrapper">
+            <textarea class="noteTextInput"></textarea>
+        </div>
+
+      </div>
+    </script>
+
+    <script type="text/template" id="noteListViewTmpl">
+        <ul class="noteList"></ul>
+    </script>
+
+    <script type="text/template" id="noteListItemViewTmpl">
+        <h3> <%= title %> </h3>
+        <p> <%= text %> </p>
+    </script>
+
+    <!-- views -->
+    <script type="text/javascript" src="js/views/app-view.js"></script>
+    <script type="text/javascript" src="js/views/note-view.js"></script>
+    <script type="text/javascript" src="js/views/note-list-view.js"></script>
+    <script type="text/javascript" src="js/views/note-list-item-view.js"></script>
+
+  </body>
+</html>
