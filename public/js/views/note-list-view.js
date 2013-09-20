@@ -19,7 +19,7 @@
             
             _.each(notes, function(item) {
                 var next = $(itemTemplate(item));
-                self.$el.append(next);  
+                self.$('.noteList').append(next);  
             });
         }
     });

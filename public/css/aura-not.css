@@ -56,6 +56,15 @@ body {
     background-color: black;
 }
 
+.noteListView input {
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.noteListView .btn {
+    margin: 5px;
+}
+
 .noteView {
     border-radius: 10px;
     height: 1000px;
