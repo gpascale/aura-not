@@ -6,6 +6,10 @@
         className: 'noteView',
         template : _.template($('#noteViewTmpl').html()),
 
+        initialize: function() {
+            this.isEditing = options.isEditing;
+        }
+
         render: function() {
             this.$el.append(this.template());
         }

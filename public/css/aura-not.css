@@ -17,14 +17,17 @@ body {
 /*****************************************************************************/
 
 .appView > header{
-    padding: 10px 20px;
+    padding: 10px 10px;
 }
 .appView > header h1{
     font-size: 35px;
     text-shadow: rgba(0,0,0,0.3) -1px 0, rgba(0,0,0,0.2) 0 -1px, rgba(255,255,255,0.2) 0 1px, rgba(0,0,0,0.2) -1px -2px;
     color: #FFAD00;
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
 }
+
+/*
 .appView .wrapper{
     position: absolute;
     overflow: hidden;
@@ -39,11 +42,32 @@ body {
     box-shadow: inset 0px 1px 5px rgba(0, 0, 0, .7);
     background-color: rgba(0,0,0,.2);
 }
-/* common stuff */
 .appView .truncate{
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+*/
+.sidebarContainer {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.sidebarControls {
+    height: 54px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 8px;
+    padding-left:5px;
+}
+
+button.createNote {
+    padding: 4px 6px;
+    margin: 2px 3px;
+}
+button.createNote img {
+    width: 40px;
+    height: 40px;
 }
 
 /*****************************************************************************/
@@ -51,9 +75,10 @@ body {
 /*****************************************************************************/
 
 .noteListView {
-    border-radius: 10px;
     height: 1000px;
-    background-color: black;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 5px rgba(0,0,0,.7);
+    background-color: rgba(0,0,0,.2);
 }
 
 .noteListView input {

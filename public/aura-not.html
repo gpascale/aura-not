@@ -2,10 +2,11 @@
 <html>
   <head>
     <!-- css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="css/aura-not.css" rel="stylesheet" type="text/css"></link>
     <!-- external stuff -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/ext/jquery.min.js"></script>
+    <script src="js/ext/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/ext/underscore-min.js"></script>
     <script type="text/javascript" src="js/ext/backbone-min.js"></script>
     <!-- main js file -->
@@ -20,7 +21,27 @@
         <h1>aura:not</h1>
       </header>
         <div class="row">
-          <div class="sidebarContainer col-sm-4 col-md-4 col-lg-4"></div>
+          <div class="sidebarContainer col-sm-4 col-md-4 col-lg-4">
+            <div class="sidebarControls">
+              <!-- Single button -->
+              Sort
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">
+                  Newest First <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">Newest First</a></li>
+                  <li><a href="#">Oldest First</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">A - Z</a></li>
+                  <li><a href="#">Z - A</a></li>
+                </ul>
+              </div>
+              <button type="button" class="createNote btn pull-right">
+                <img src="img/write_blog.png"></img>
+              </button>
+            </div>
+          </div>
           <div class="contentContainer col-sm-8 col-md-8 col-lg-8"></div>
         </div>
     </script>
@@ -35,7 +56,7 @@
         </div>
         <button type="button" class="btn btn-lg">
             <i src="img/location.png"></i>
-            Add Location
+            Set Location
         </button>
 
         <div class="noteInputWrapper">
