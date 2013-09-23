@@ -49,10 +49,23 @@
     <script type="text/template" id="noteViewTmpl">
       <div class="header">
           <div class="col-sm-9 col-md-9 col-lg-9">
-            <input type="text" placeholder="Note Title">
+            <h3 class="title"><%= title %></h3>
           </div>
-          <button type="button" class="btn btn-sm">Cancel</button>
-          <button type="button" class="btn btn-sm">Save</button>
+          <button type="button" class="edit btn btn-sm">Edit</button>
+          <button type="button" class="delete btn btn-sm">Delete</button>
+        </div>
+        <p><!--Location--></p>
+        <p><%= text %></p>
+      </div>
+    </script>
+
+    <script type="text/template" id="noteEditViewTmpl">
+      <div class="header">
+          <div class="col-sm-9 col-md-9 col-lg-9">
+            <input type="text" placeholder="Note Title" value="<%= title %>">
+          </div>
+          <button type="button" class="cancel btn btn-sm">Cancel</button>
+          <button type="button" class="save btn btn-sm">Save</button>
         </div>
         <button type="button" class="btn btn-lg">
             <i src="img/location.png"></i>
@@ -60,9 +73,8 @@
         </button>
 
         <div class="noteInputWrapper">
-            <textarea class="noteTextInput"></textarea>
+            <textarea class="noteTextInput"><%= text %></textarea>
         </div>
-
       </div>
     </script>
 
@@ -73,12 +85,15 @@
     </script>
 
     <script type="text/template" id="noteListItemViewTmpl">
-        <h3> <%= title %> </h3>
-        <p> <%= text %> </p>
+      <span class="pull-right"> <% var d = new Date(modifiedDate); print((d.getHours() % 12) + ":" + d.getMinutes() + (d.getHours() > 12 ? "PM" : "AM")); %> </span>
+      <p class="title"> <%= title %> </p>
+      <p> <%= text %> </p>
     </script>
 
-    <!-- views -->
+    <!-- models & views -->
+    <script type="text/javascript" src="js/models/note.js"></script>
     <script type="text/javascript" src="js/views/app-view.js"></script>
+    <script type="text/javascript" src="js/views/note-edit-view.js"></script>
     <script type="text/javascript" src="js/views/note-view.js"></script>
     <script type="text/javascript" src="js/views/note-list-view.js"></script>
     <script type="text/javascript" src="js/views/note-list-item-view.js"></script>

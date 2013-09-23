@@ -8,6 +8,10 @@
 
         render: function() {
             this.$el.append(this.template());
+
+            this.$el.on('click', function() {
+                
+            });
         }
     });
 

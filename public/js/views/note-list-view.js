@@ -12,14 +12,19 @@
 
             var itemTemplate = _.template($('#noteListItemViewTmpl').html());
             var notes = [
-                { title: "Note 1", text: "This is note 1" },
-                { title: "Note 2", text: "This is note 2" },
-                { title: "Note 3", text: "This is note 3" }
+                { title: "Note 1", text: "This is note 1", modifiedDate: (new Date()).getTime() },
+                { title: "Note 2", text: "This is note 2", modifiedDate: (new Date()).getTime() },
+                { title: "Note 3", text: "This is note 3", modifiedDate: (new Date()).getTime() }
             ];
             
             _.each(notes, function(item) {
-                var next = $(itemTemplate(item));
-                self.$('.noteList').append(next);  
+                var next = $('<li></li>').append($(itemTemplate(item)));
+                self.$('.noteList').append(next);
+            });
+
+            this.$el.on('click', '.noteList li', function() {
+                var model = new app.Note(notes[$(this).index()]);
+                self.trigger('noteSelected', model);
             });
         }
     });

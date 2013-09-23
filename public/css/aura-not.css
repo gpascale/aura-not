@@ -26,28 +26,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
 }
-
-/*
-.appView .wrapper{
-    position: absolute;
-    overflow: hidden;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: 50px 0 0;
-}
-.appView .auranoteSidebar .scrollWrapper{
-    border-radius: 5px;
-    box-shadow: inset 0px 1px 5px rgba(0, 0, 0, .7);
-    background-color: rgba(0,0,0,.2);
-}
-.appView .truncate{
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-*/
 .sidebarContainer {
     padding-left: 10px;
     padding-right: 10px;
@@ -90,20 +68,46 @@ button.createNote img {
     margin: 5px;
 }
 
-.noteView {
+.noteListView ul {
+    list-style: none;
+    margin: 0;
+    padding: 5px;
+}
+.noteListView ul li {
+    margin: 0px 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-top: 1px solid rgba(0,0,0,.4);
+    box-shadow: inset 0 1px 0 rgba(150,150,150,.5);
+}
+.noteListView ul li:hover {
+    background-color: rgba(0,0,0,.3);
+}
+.noteListView ul li .title {
+    color: white;
+    font-weight: bold;
+}
+
+.noteView, .noteEditView {
     border-radius: 10px;
     height: 1000px;
     background-color: white;
 }
 
-.noteView .header {
+.noteView .header, .noteEditView .header {
     width: 100%;
     height: 40px;
     background-color: #028e9b;
     border-radius: 10px;
+    color: white;
+    font-weight: bold;
 }
-
-.noteView .header input {
+.noteView .header .title {
+    margin: 0;
+    font-size: 16px;
+    margin-top: 10px;
+}
+.noteEditView .header input {
     -webkit-appearance: none;
     font: inherit;
     color: inherit;
@@ -117,14 +121,14 @@ button.createNote img {
     background-color: transparent;
 }
 
-.noteView .header .btn {
+.noteView .header .btn, .noteEditView .header .btn {
     margin-top: 4px;
 }
 
-.noteView .noteInputWrapper {
+.noteEditView .noteInputWrapper {
     padding: 50px 10px;
 }
-.noteView .noteTextInput {
+.noteEditView .noteTextInput {
     min-height: 200px;
     width: 100%;
 }
