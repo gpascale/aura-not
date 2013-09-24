@@ -9,18 +9,10 @@
         render: function() {
             var self = this;
 
-            this.notes = new app.NoteCollection();
-            this.notes.fetch();
-
+            // First things first, render the app's outer HTML
             this.$el.append(this.template());
 
-            var noteModel = new app.Note({
-                title: 'My Note',
-                text: 'Hello, this is my note',
-                modifiedDate: (new Date()).getTime()
-            });
-            this._showNote(noteModel);
-
+            // Create a note list view, wire it up, and stick it in the sidebar.
             this.noteListView = new app.NoteListView();
             this.noteListView.render();
             this.noteListView.on('noteSelected', function(noteModel) {
@@ -28,18 +20,26 @@
             });
             this.$('.sidebarContainer').append(this.noteListView.$el);
 
-            // Create note button
+            // Wire up the Create Note button
             this.$('.createNote').on('click', function(e) {
                 self._createNote();
             });
+
+            // To start off, present the create note screen on the right side of the page.
+            self._createNote();
         },
 
+
+        /*********************************************************************/
+        /* Shows an existing note in the content section of the page.        */
+        /*********************************************************************/
         _showNote: function(noteModel) {
             var self = this;
+
+            // Create and wire up a new content view (note view in this case)
             var noteView = new app.NoteView({ model: noteModel });
             noteView.render();
             noteView.on('edit', function() {
-                // destroy noteView here
                 self._editNote(noteModel);
             });
             noteView.on('delete', function() {
@@ -47,17 +47,29 @@
                     self._createNote();
                 }});
             });
+
+            // Clean up the old content view if there was one, and stick the new one in its place.
             this.$('.contentContainer').empty();
             this.$('.contentContainer').append(noteView.$el);
+            if (this.activeContentView)
+                this.activeContentView.remove();
+            this.activeContentView = noteView;
         },
 
+
+        /*********************************************************************/
+        /* Shows an existing note with edit controls in the content section  */
+        /* of the page.                                                      */
+        /*********************************************************************/
         _editNote: function(noteModel) {
             var self = this;
+
+            // Create and wire up a new content view (note edit view in this case)
             var noteEditView = new app.NoteEditView({ model: noteModel });
             noteEditView.render();
             noteEditView.on('cancel', function() {
-                // destroy note edit view
-                self._showNote(noteModel);
+                if (!noteModel.isNew())
+                    self._showNote(noteModel);
             });
             noteEditView.on('save', function() {
                 // destroy note edit view
@@ -66,10 +78,20 @@
                     self.noteListView.notes.set(noteModel, { remove: false });
                 }});
             });
+
+            // Clean up the old content view if there was one, and stick the new one in its place.
             this.$('.contentContainer').empty();
             this.$('.contentContainer').append(noteEditView.$el);
+            if (this.activeContentView)
+                this.activeContentView.remove();
+            this.activeContentView = noteEditView;
         },
 
+
+        /*********************************************************************/
+        /* Shows the create note controls in the content section.            */
+        /* Really just the edit controls but with no existing note.          */
+        /*********************************************************************/
         _createNote: function() {
             this._editNote(new app.Note());
         }

@@ -5,7 +5,9 @@
     app.NoteListView = Backbone.View.extend({
         className: 'noteListView',
         template : _.template($('#noteListViewTmpl').html()),
-        notes: new app.NoteCollection(),
+        notes: new app.NoteCollection(), // the collection of models rendered by this view
+
+        /**********************************************************************/
 
         render: function() {
             var self = this;
@@ -22,7 +24,10 @@
             });
         },
 
+        /**********************************************************************/
+
         _update: function() {
+            // When data has changed, just rerender the entire list.
             var self = this;
             this.$('.noteList').empty();
             var itemTemplate = _.template($('#noteListItemViewTmpl').html());

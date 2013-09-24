@@ -2,6 +2,8 @@
 
     var app = window.AURANOT = window.AURANOT || { };
 
+    // A collection of note models. The app maintains one of these to back the list of
+    // notes in the sidebar.
     app.NoteCollection = Backbone.Collection.extend({
         model: app.Note,
 
