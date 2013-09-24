@@ -10,7 +10,13 @@
     <script type="text/javascript" src="js/ext/underscore-min.js"></script>
     <script type="text/javascript" src="js/ext/backbone-min.js"></script>
     <!-- main js file -->
-    <script type="text/javascript" src="js/aura-not.js"></script>
+    <script>
+        $(document).ready(function() {
+            var appView = new window.AURANOT.AppView();
+            appView.render();
+            $('body').append(appView.$el);
+        });
+    </script>
   </head>
   <body>
 
@@ -54,8 +60,17 @@
           <button type="button" class="edit btn btn-sm">Edit</button>
           <button type="button" class="delete btn btn-sm">Delete</button>
         </div>
-        <p><!--Location--></p>
-        <p><%= text %></p>
+        <% if (location != null) { %>
+            <button type="button" class="location btn btn-lg">
+                <img src="img/location.png"></img>
+                <%= location.latitude %>, <%= location.longitude %>
+                <div class="googleImages">
+                    <img src="http://maps.googleapis.com/maps/api/staticmap?center=<%= location.latitude %>, <%= location.longitude %>&amp;zoom=11&amp;size=100x100&amp;sensor=false"/>
+                    <img src="http://maps.googleapis.com/maps/api/streetview?size=100x100&amp;location=<%= location.latitude %>,<%= location.longitude %>&amp;sensor=false"/>
+                </div>
+            </button>
+        <% } %>
+        <p class="noteText"><%= text %></p>
       </div>
     </script>
 
@@ -67,10 +82,21 @@
           <button type="button" class="cancel btn btn-sm">Cancel</button>
           <button type="button" class="save btn btn-sm">Save</button>
         </div>
-        <button type="button" class="btn btn-lg">
-            <i src="img/location.png"></i>
-            Set Location
-        </button>
+        <% if (location == null) { %>
+            <button type="button" class="setLocation btn btn-lg">
+                <img src="img/location.png"></img>
+                Set Location
+            </button>
+        <% } else { %>
+            <button type="button" class="location btn btn-lg">
+                <img src="img/location.png"></img>
+                <%= location.latitude %>, <%= location.longitude %>
+                <div class="googleImages">
+                    <img src="http://maps.googleapis.com/maps/api/staticmap?center=<%= location.latitude %>, <%= location.longitude %>&amp;zoom=11&amp;size=100x100&amp;sensor=false"/>
+                    <img src="http://maps.googleapis.com/maps/api/streetview?size=100x100&amp;location=<%= location.latitude %>,<%= location.longitude %>&amp;sensor=false"/>
+                </div>
+            </button>
+        <% } %>
 
         <div class="noteInputWrapper">
             <textarea class="noteTextInput"><%= text %></textarea>
@@ -90,13 +116,13 @@
       <p> <%= text %> </p>
     </script>
 
-    <!-- models & views -->
+    <!-- models, collections & views -->
     <script type="text/javascript" src="js/models/note.js"></script>
+    <script type="text/javascript" src="js/collections/note-collection.js"></script>
     <script type="text/javascript" src="js/views/app-view.js"></script>
     <script type="text/javascript" src="js/views/note-edit-view.js"></script>
     <script type="text/javascript" src="js/views/note-view.js"></script>
     <script type="text/javascript" src="js/views/note-list-view.js"></script>
-    <script type="text/javascript" src="js/views/note-list-item-view.js"></script>
 
   </body>
 </html>

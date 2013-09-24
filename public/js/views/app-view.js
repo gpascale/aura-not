@@ -9,6 +9,9 @@
         render: function() {
             var self = this;
 
+            this.notes = new app.NoteCollection();
+            this.notes.fetch();
+
             this.$el.append(this.template());
 
             var noteModel = new app.Note({
@@ -40,7 +43,9 @@
                 self._editNote(noteModel);
             });
             noteView.on('delete', function() {
-                console.log("DELETE");
+                noteModel.destroy({ success: function() {
+                    self._createNote();
+                }});
             });
             this.$('.contentContainer').empty();
             this.$('.contentContainer').append(noteView.$el);
@@ -56,19 +61,17 @@
             });
             noteEditView.on('save', function() {
                 // destroy note edit view
-                // todo: save changes
-                self._showNote(noteModel);
+                noteModel.save({ }, { success: function() {
+                    self._showNote(noteModel);
+                    self.noteListView.notes.set(noteModel, { remove: false });
+                }});
             });
             this.$('.contentContainer').empty();
             this.$('.contentContainer').append(noteEditView.$el);
         },
 
         _createNote: function() {
-            var noteModel = new app.Note();
-            var noteEditView = new app.NoteEditView({ model: noteModel });
-            noteEditView.render();
-            this.$('.contentContainer').empty();
-            this.$('.contentContainer').append(noteEditView.$el);
+            this._editNote(new app.Note());
         }
     });
 

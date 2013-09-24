@@ -10,6 +10,24 @@ body {
     overflow: hidden;
     color: #5C676B;
     padding: 0 15px;
+    font-family: 'Lucida Grande';
+}
+
+.btn {
+    background-color: #ddd;
+    background: linear-gradient(#F8F8F9,#DDDFE1);
+    padding: 4px 4px;
+    box-shadow: rgba(0, 0, 0, 0.701961) 0px 1px 3px 0px, rgba(0, 0, 0, 0.298039) 0px 1px 0px 0px;
+    border: 0;
+    border-top: 1px solid rgba(255,255,255,.45);
+    font-size: 14px;
+    font-weight: bold;
+}
+.btn:hover, .btn:focus {
+    background: #757D8A linear-gradient(#7F8792,#535B68);
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(255,255,255,.45);
+    color: #fff;
 }
 
 /*****************************************************************************/
@@ -37,6 +55,9 @@ body {
     font-weight: bold;
     margin-bottom: 8px;
     padding-left:5px;
+}
+.sidebarControls .dropdown-toggle {
+    font-size: 11px;
 }
 
 button.createNote {
@@ -74,6 +95,8 @@ button.createNote img {
     padding: 5px;
 }
 .noteListView ul li {
+    color: #999;
+    font-size: 13px;
     margin: 0px 10px;
     padding: 10px 15px;
     cursor: pointer;
@@ -86,6 +109,7 @@ button.createNote img {
 .noteListView ul li .title {
     color: white;
     font-weight: bold;
+    font-size: 14px;
 }
 
 .noteView, .noteEditView {
@@ -125,10 +149,35 @@ button.createNote img {
     margin-top: 4px;
 }
 
+.noteView .location, .noteEditView .location, .noteEditView .setLocation {
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
+.btn.location img, .btn.setLocation img {
+    vertical-align: top;
+    margin-top: 2px;
+}
+
+.noteView .btn.location .googleImages, .noteEditView .btn.location .googleImages {
+    display: none;
+}
+.noteView .btn.location.active .googleImages, .noteEditView .btn.location.active .googleImages {
+    display: block;
+}
+
+.noteView .noteText {
+    margin-top: 40px;
+    margin-left: 10px;
+}
+
 .noteEditView .noteInputWrapper {
     padding: 50px 10px;
 }
 .noteEditView .noteTextInput {
+    color: inherit;
     min-height: 200px;
     width: 100%;
+    border-radius: 5px;
+    border: 1px dashed #999;
 }

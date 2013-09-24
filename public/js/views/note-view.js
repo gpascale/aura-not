@@ -14,6 +14,10 @@
 
             this.$el.append(this.template(this.model.attributes));
 
+            this.$('.location').on('click', function() {
+                $(this).toggleClass('active');
+            });
+
             this.$('.edit').on('click', function() {
                 self.trigger('edit');
             });
