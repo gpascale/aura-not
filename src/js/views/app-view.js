@@ -1,5 +1,5 @@
 (function() {
-
+    console.log("bang bang");
     var app = window.AURANOT = window.AURANOT || {};
 
     app.AppView = Backbone.View.extend({

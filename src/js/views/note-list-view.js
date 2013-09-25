@@ -61,30 +61,16 @@
         /**********************************************************************/
 
         _sortOrderChanged: function(sortOrder) {
-            switch(sortOrder) {
-                case 'newest':
-                    this.notes.comparator = function(obj) {
-                        return -obj.get('modifiedDate');
-                    };
-                    break;
-                case 'oldest':
-                    this.notes.comparator = function(obj) {
-                        return obj.get('modifiedDate');
-                    };
-                    break;
-                case 'a-z':
-                    this.notes.comparator = function(lhs, rhs) {
-                        return lhs.get('title').localeCompare(rhs.get('title'));
-                    };
-                    break;
-                case 'z-a':
-                    this.notes.comparator = function(lhs, rhs) {
-                        return rhs.get('title').localeCompare(lhs.get('title'));
-                    }
-                    break;
-            }
+            this.notes.comparator = this._comparators[sortOrder];
             this.notes.sort();
             this._update();
+        },
+
+        _comparators: {
+            newest: function(obj) { return -obj.get('modifiedDate'); },
+            oldest: function(obj) { return obj.get('modifiedDate'); },
+            'a-z': function(lhs, rhs) { return lhs.get('title').localeCompare(rhs.get('title')); },
+            'z-a': function(lhs, rhs) { return rhs.get('title').localeCompare(lhs.get('title')); }
         }
     });
 }());

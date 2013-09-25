@@ -5,12 +5,14 @@
     // uses the browser's local storage. It's a quick and easy way to create a backend
     // that works for the purposes of this demo.
 
+    /*************************************************************************/
+
     Backbone.sync = function(method, model, options) {
         var ret = null;
 
         if (model.url == 'notes') {
             if (method == 'read') {
-                var ret = [ ];
+                ret = [ ];
                 $.each(window.localStorage, function(key, val) {
                     if (key.indexOf('note-') == 0) {
                         var model = new app.Note(JSON.parse(val));
@@ -22,8 +24,6 @@
         }
 
         else if (model.url = "note") {
-            console.log("SYNC: method is " + method);
-            var ret = null;
             switch (method) {
                 case 'create':
                 case 'update':
@@ -47,6 +47,8 @@
             options.error('error');
         return ret;
     };
+
+    /*************************************************************************/
 
     // Good-enough GUID generation. From http://documentcloud.github.io/backbone/docs/backbone-localstorage.html
     function S4() {

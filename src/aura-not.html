@@ -2,13 +2,13 @@
 <html>
   <head>
     <!-- css -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link href="css/aura-not.css" rel="stylesheet" type="text/css"></link>
+    <link rel="stylesheet" type="text/css" href="ext/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="src/css/aura-not.css" ></link>
     <!-- external stuff -->
-    <script src="js/ext/jquery.min.js"></script>
-    <script src="js/ext/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/ext/underscore-min.js"></script>
-    <script type="text/javascript" src="js/ext/backbone-min.js"></script>
+    <script type="text/javascript" src="ext/js/jquery.min.js"></script>
+    <script type="text/javascript" src="ext/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="ext/js/underscore-min.js"></script>
+    <script type="text/javascript" src="ext/js/backbone-min.js"></script>
     <!-- js entry point -->
     <script>
         $(document).ready(function() {
@@ -19,7 +19,6 @@
     </script>
   </head>
   <body>
-
 
     <!-- Templates -->
     <script type="text/template" id="appViewTmpl">
@@ -98,7 +97,7 @@
         <% } %>
 
         <div class="noteInputWrapper">
-            <textarea class="noteTextInput"><%= text %></textarea>
+          <textarea class="noteTextInput"><%= text %></textarea>
         </div>
       </div>
     </script>
@@ -116,14 +115,13 @@
       <p class="text"> <%= text %> </p>
     </script>
 
-    <!-- models, collections & views -->
-    <script type="text/javascript" src="js/backend-localstorage.js"></script>
-    <script type="text/javascript" src="js/models/note.js"></script>
-    <script type="text/javascript" src="js/collections/note-collection.js"></script>
-    <script type="text/javascript" src="js/views/app-view.js"></script>
-    <script type="text/javascript" src="js/views/note-edit-view.js"></script>
-    <script type="text/javascript" src="js/views/note-view.js"></script>
-    <script type="text/javascript" src="js/views/note-list-view.js"></script>
+    <!-- models & views -->
+    <script type="text/javascript" src="src/js/backend-localstorage.js"></script>
+    <script type="text/javascript" src="src/js/models/note.js"></script>
+    <script type="text/javascript" src="src/js/views/app-view.js"></script>
+    <script type="text/javascript" src="src/js/views/note-edit-view.js"></script>
+    <script type="text/javascript" src="src/js/views/note-view.js"></script>
+    <script type="text/javascript" src="src/js/views/note-list-view.js"></script>
 
   </body>
 </html>
