@@ -2,10 +2,13 @@
     var app = window.AURANOT = window.AURANOT || { };
     
     // This file overrides Backbone's sync method to create a simulated backend that
-    // uses the browser's local storage.
+    // uses the browser's local storage. It's a quick and easy way to create a backend
+    // that works for the purposes of this demo.
 
     Backbone.sync = function(method, model, options) {
-        if (model.url == 'collections') {
+        var ret = null;
+
+        if (model.url == 'notes') {
             if (method == 'read') {
                 var ret = [ ];
                 $.each(window.localStorage, function(key, val) {
@@ -15,12 +18,6 @@
                         ret.push(model);
                     }
                 });
-                if (ret)
-                    options.success(ret);
-                else
-                    options.error('error');
-
-                return ret;
             }
         }
 
@@ -42,13 +39,13 @@
                     delete window.localStorage[model.id];
                     break;
             }
-            if (ret && options.success)
-                options.success(ret);
-            else if (!ret && options.error)
-                options.error(ret);
-
-            return null;
         }
+
+        if (ret && options.success)
+            options.success(ret);
+        else if (!ret && options.error)
+            options.error('error');
+        return ret;
     };
 
     // Good-enough GUID generation. From http://documentcloud.github.io/backbone/docs/backbone-localstorage.html

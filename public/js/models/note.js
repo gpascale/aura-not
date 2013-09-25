@@ -14,7 +14,7 @@
 
     app.NoteCollection = Backbone.Collection.extend({
         model: app.Note,
-        url: 'collections'
+        url: 'notes'
     });
 
 }());
