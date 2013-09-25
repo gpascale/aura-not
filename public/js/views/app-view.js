@@ -26,6 +26,7 @@
                 self._showCreateNote();
             });
 
+            // Wire up the sort order dropdown
             this.$('.dropdown-menu li a').on('click', function() {
                 var sortOrders = [ 'newest', 'oldest', 'a-z', 'z-a' ];
                 self.trigger('sortOrderChanged', sortOrders[$(this).parent().index()]);

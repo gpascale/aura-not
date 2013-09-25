@@ -80,9 +80,14 @@ button.createNote img {
     background-color: rgba(0,0,0,.2);
 }
 
+.noteListView .searchWrap {
+    width: 100%;
+    padding: 10px 15px;
+    box-sizing: border-box;
+}
 .noteListView input {
+    width: 100%;
     border-radius: 10px;
-    margin: 5px;
 }
 
 .noteListView .btn {
@@ -110,6 +115,13 @@ button.createNote img {
     color: white;
     font-weight: bold;
     font-size: 14px;
+}
+.noteListView ul li .text {
+    width: 100%;
+    max-height: 18px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .noteView, .noteEditView {
