@@ -9,7 +9,7 @@
     <script src="js/ext/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/ext/underscore-min.js"></script>
     <script type="text/javascript" src="js/ext/backbone-min.js"></script>
-    <!-- main js file -->
+    <!-- js entry point -->
     <script>
         $(document).ready(function() {
             var appView = new window.AURANOT.AppView();
@@ -111,7 +111,7 @@
     </script>
 
     <script type="text/template" id="noteListItemViewTmpl">
-      <span class="pull-right"> <% var d = new Date(modifiedDate); print((d.getHours() % 12) + ":" + d.getMinutes() + (d.getHours() > 12 ? "PM" : "AM")); %> </span>
+      <span class="pull-right"><% var d = new Date(modifiedDate); print((d.getHours() % 12) + ":" + (d.getMinutes() < 10 ? "0" : "") + d.getMinutes() + (d.getHours() > 12 ? "PM" : "AM")); %> </span>
       <p class="title"> <%= title %> </p>
       <p class="text"> <%= text %> </p>
     </script>
