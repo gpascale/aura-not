@@ -44,6 +44,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
 }
+
 .sidebarContainer {
     padding-left: 10px;
     padding-right: 10px;
@@ -134,8 +135,17 @@ body {
     color: white;
     font-weight: bold;
 }
+.noteView > .header > div, .noteEditView > .header > div {
+    padding: 0;
+}
+.noteView .header .headerButtons, .noteEditView .header .headerButtons {
+    padding-right: 5px;
+}
+.noteView > .header .btn, .noteEditView > .header .btn {
+    margin-right: 5px;
+}
 .noteView .header .title {
-    margin: 0;
+    margin: 10px;
     font-size: 16px;
     margin-top: 10px;
 }

@@ -55,8 +55,10 @@
           <div class="col-sm-9 col-md-9 col-lg-9">
             <h3 class="title"><%= title %></h3>
           </div>
-          <button type="button" class="edit btn btn-sm">Edit</button>
-          <button type="button" class="delete btn btn-sm">Delete</button>
+          <div class="headerButtons col-sm-3 col-md-3 col-lg-3">
+            <button type="button" class="delete btn btn-sm pull-right">Delete</button>
+            <button type="button" class="edit btn btn-sm pull-right">Edit</button>
+          </div>
         </div>
         <% if (location != null) { %>
             <button type="button" class="location btn btn-lg">
@@ -77,8 +79,10 @@
           <div class="col-sm-9 col-md-9 col-lg-9">
             <input type="text" placeholder="Note Title" value="<%= title %>">
           </div>
-          <button type="button" class="cancel btn btn-sm">Cancel</button>
-          <button type="button" class="save btn btn-sm">Save</button>
+          <div class="headerButtons col-sm-3 col-md-3 col-lg-3">
+            <button type="button" class="save btn btn-sm pull-right">Save</button>
+            <button type="button" class="cancel btn btn-sm pull-right">Cancel</button>
+          </div>
         </div>
         <% if (location == null) { %>
             <button type="button" class="setLocation btn btn-lg">
