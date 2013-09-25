@@ -8,6 +8,7 @@
 
         render: function() {
             var self = this;
+            app.appView = this;
 
             // First things first, render the app's outer HTML
             this.$el.append(this.template());
@@ -22,13 +23,18 @@
 
             // Wire up the Create Note button
             this.$('.createNote').on('click', function(e) {
-                self._createNote();
+                self._showCreateNote();
+            });
+
+            this.$('.dropdown-menu li a').on('click', function() {
+                var sortOrders = [ 'newest', 'oldest', 'a-z', 'z-a' ];
+                self.trigger('sortOrderChanged', sortOrders[$(this).parent().index()]);
+                $(this).parents('.btn-group').find('.selectedValue').text($(this).text() + " ");
             });
 
             // To start off, present the create note screen on the right side of the page.
-            self._createNote();
+            self._showCreateNote();
         },
-
 
         /*********************************************************************/
         /* Shows an existing note in the content section of the page.        */
@@ -40,28 +46,22 @@
             var noteView = new app.NoteView({ model: noteModel });
             noteView.render();
             noteView.on('edit', function() {
-                self._editNote(noteModel);
+                self._showEditNote(noteModel);
             });
             noteView.on('delete', function() {
                 noteModel.destroy({ success: function() {
-                    self._createNote();
+                    self._showCreateNote();
                 }});
             });
 
-            // Clean up the old content view if there was one, and stick the new one in its place.
-            this.$('.contentContainer').empty();
-            this.$('.contentContainer').append(noteView.$el);
-            if (this.activeContentView)
-                this.activeContentView.remove();
-            this.activeContentView = noteView;
+            this._showContentView(noteView);
         },
-
 
         /*********************************************************************/
         /* Shows an existing note with edit controls in the content section  */
         /* of the page.                                                      */
         /*********************************************************************/
-        _editNote: function(noteModel) {
+        _showEditNote: function(noteModel) {
             var self = this;
 
             // Create and wire up a new content view (note edit view in this case)
@@ -72,28 +72,34 @@
                     self._showNote(noteModel);
             });
             noteEditView.on('save', function() {
-                // destroy note edit view
                 noteModel.save({ }, { success: function() {
                     self._showNote(noteModel);
                     self.noteListView.notes.set(noteModel, { remove: false });
                 }});
             });
 
-            // Clean up the old content view if there was one, and stick the new one in its place.
-            this.$('.contentContainer').empty();
-            this.$('.contentContainer').append(noteEditView.$el);
-            if (this.activeContentView)
-                this.activeContentView.remove();
-            this.activeContentView = noteEditView;
+            this._showContentView(noteEditView);
         },
-
 
         /*********************************************************************/
         /* Shows the create note controls in the content section.            */
         /* Really just the edit controls but with no existing note.          */
         /*********************************************************************/
-        _createNote: function() {
-            this._editNote(new app.Note());
+        _showCreateNote: function() {
+            this._showEditNote(new app.Note());
+        },
+
+        /*********************************************************************/
+        /* Helper function to show a view as the content view. Cleans        */
+        /* up the old content view if necessary                              */
+        /*********************************************************************/
+        _showContentView: function(view) {
+            // Clean up the old content view if there was one, and stick the new one in its place.
+            this.$('.contentContainer').empty();
+            this.$('.contentContainer').append(view.$el);
+            if (this.activeContentView)
+                this.activeContentView.remove();
+            this.activeContentView = view;
         }
     });
 
